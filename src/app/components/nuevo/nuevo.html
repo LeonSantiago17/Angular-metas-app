@@ -1,0 +1,62 @@
+<section>
+  <div class="tarjeta">
+      <form [formGroup]="formularioDeMetas" class="p-4" ngSubmit="subirForm()">
+
+        <label class="label">
+          Describe tu meta
+          <input type="text" class="input" placeholder="ej. 52 caminatas" formControlName="detalles">
+        </label>
+
+        <label class="label">
+            ¿Con qué frecuencia deseas cumplir tu meta?<span>ej. 1 vez a la semana</span>
+            <div class="flex">
+            <input type="text" class="input" formControlName="eventos">
+            <select class="input" formControlName="periodo">
+              @for(frecuencia of frecuencia; track frecuencia){
+                 <option [value]="frecuencia">{{frecuencia}}</option>
+              }
+            </select>
+            </div>
+        </label>
+
+        <label class="label">
+          ¿Cuántas veces deseas completar esta meta?
+          <input type="number" class="input" formControlName="meta">
+        </label>
+
+        <label class="label">
+          ¿tienes una fecha limite?
+          <input type="date" class="input" formControlName="plazo">
+        </label>
+
+        <label class="label">
+          ¿Cuántas veces haz completado esta meta?
+          <input type="number" class="input" formControlName="completado">
+        </label>
+
+        <label class="label">
+          escoge el icono para la meta
+          <select class="input" formControlName="icono">
+          @for(icono of iconos ; track icono){
+               <option [value]="icono">
+                {{icono}}
+              </option>
+          }
+          </select>
+        </label>
+      </form>
+       <div class="botones">
+
+        @if(!metaIng){
+           <button class="boton boton--negro" (click)="subirForm()">Crear</button>
+        }
+        @if(metaIng){
+           <button class="boton boton--negro" (click)="actualizarMetas()">Actualizar</button>
+        }
+        @if(metaIng){
+           <button class="boton boton--rojo" (click)="eliminarMetas()">Borrar</button>
+        }
+          <button class="boton boton--gris" (click)="pagInicial()">Cancelar</button>
+        </div>
+  </div>
+</section>
